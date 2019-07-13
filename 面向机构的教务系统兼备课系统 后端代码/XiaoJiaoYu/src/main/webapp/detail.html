@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>在线人数统计</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+   <div><span class="title">当前在线：</span><span id="online" style="color: rgb(69, 127, 226); outline: none; cursor: text;"></span>
+   <span class="title">当日登录：</span><span id="countDay" style="color: rgb(69, 127, 226);"></span>
+   <span class="title">当月累计登录：</span><span id="countMonth" style="color:#457fe2"></span></div>
+   
+   <script>
+   var localObj = window.location;
+
+   var basePath = localObj.protocol+"//"+localObj.host;
+
+   var server_context=basePath;  // 获取服务器的地址
+   
+   $(function() {
+	   setInterval(func(), 5000);
+	})
+   
+	   var func = function(){
+	    $.ajax({
+    	   type : "post",
+    	   url : server_context + "/data/getCount",
+    	   async : false,
+    	   success : function(result){
+    		   $("#online").html(result.onlineCount + "人&nbsp;");
+    		   $("#countDay").html(result.dayCount + "人&nbsp;");
+    		  $("#countMonth").html(result.monthCount + "人&nbsp;");
+    	   },
+    	   error : function(result){
+    		   //alert("请求数据错误");
+    	   }
+    		
+    	}); 
+	    return func;
+  }
+   </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{"list" :[{
+    "questionId" : 1000311885,
+    "syncKnowledges" : null,
+    "subQuestions" : [ ],
+    "questionTypeId" : 37,
+    "questionExplains" : [ {
+      "answerTranslate" : "D",
+      "trainThoughtTranslate" : "<p>略</p>",
+      "explainId" : 1003586367
+    } ],
+    "uuid" : "51ccd58561a9587e",
+    "difficultyName" : "偏难",
+    "subjectId" : 20,
+    "isDelicate" : 0,
+    "dimensionVOs" : null,
+    "queryQueSetIds" : [ 10 ],
+    "useCount" : 367,
+    "videoIds" : null,
+    "jyList" : null,
+    "questionTypeCollapse" : "r_1000311885",
+    "audioList" : null,
+    "sectionId" : 17,
+    "difficulty" : 40,
+    "questionTypeName" : "选择题",
+    "questionTypeDimensionVOList" : null,
+    "createTime" : "2019-03-13T09:37:13.000+0000",
+    "comprehensiveScore" : 1110,
+    "questionTypeCollapseCount" : 0,
+    "storageQuestionDimensionVOList" : null,
+    "knowledges" : [ {
+      "isMaster" : null,
+      "name" : "函数零点的定义",
+      "id" : "58271",
+      "subQuestionId" : null
+    } ]
+  }, {
+    "questionId" : 1000311884,
+    "syncKnowledges" : null,
+    "subQuestions" : [ ],
+    "questionTypeId" : 37,
+    "questionExplains" : [ {
+      "answerTranslate" : "B",
+      "trainThoughtTranslate" : "<p>略</p>",
+      "explainId" : 1003586357
+    } ],
+    "uuid" : "1a995a7ccdddec23",
+    "difficultyName" : "偏难",
+    "subjectId" : 20,
+    "isDelicate" : 0,
+    "dimensionVOs" : null,
+    "queryQueSetIds" : [ 10 ],
+    "useCount" : 0,
+    "videoIds" : null,
+    "jyList" : null,
+    "questionTypeCollapse" : "r_1000311884",
+    "audioList" : null,
+    "sectionId" : 17,
+    "difficulty" : 40,
+    "questionTypeName" : "选择题",
+    "questionTypeDimensionVOList" : null,
+    "createTime" : "2019-03-13T09:37:13.000+0000",
+    "comprehensiveScore" : 1110,
+    "questionTypeCollapseCount" : 0,
+    "storageQuestionDimensionVOList" : null,
+    "knowledges" : [ {
+      "isMaster" : null,
+      "name" : "函数零点的定义",
+      "id" : "58271",
+      "subQuestionId" : null
+    } ]
+  }, {
+    "questionId" : 1000311883,
+    "syncKnowledges" : null,
+    "subQuestions" : [ ],
+    "questionTypeId" : 37,
+    "questionExplains" : [ {
+      "answerTranslate" : "A",
+      "trainThoughtTranslate" : "<p>略</p>",
+      "explainId" : 1003586339
+    } ],
+    "uuid" : "18d9233f60992d5d",
+    "difficultyName" : "偏难",
+    "subjectId" : 20,
+    "isDelicate" : 0,
+    "dimensionVOs" : null,
+    "queryQueSetIds" : [ 10 ],
+    "useCount" : 19,
+    "videoIds" : null,
+    "jyList" : null,
+    "questionTypeCollapse" : "r_1000311883",
+    "audioList" : null,
+    "sectionId" : 17,
+    "difficulty" : 40,
+    "questionTypeName" : "选择题",
+    "questionTypeDimensionVOList" : null,
+    "createTime" : "2019-03-13T09:37:13.000+0000",
+    "comprehensiveScore" : 1110,
+    "questionTypeCollapseCount" : 0,
+    "storageQuestionDimensionVOList" : null,
+    "knowledges" : [ {
+      "isMaster" : null,
+      "name" : "函数零点的定义",
+      "id" : "58271",
+      "subQuestionId" : null
+    } ]
+  } ]
+}
+    

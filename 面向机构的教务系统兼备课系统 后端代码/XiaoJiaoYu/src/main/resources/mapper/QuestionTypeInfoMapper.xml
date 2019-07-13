@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.question.mapper.QuestionTypeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.question.pojo.QuestionTypeInfo" >
+    <result column="question_Type_Id" property="questionTypeId" jdbcType="INTEGER" />
+    <result column="question_Type_Name" property="questionTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    question_Type_Id, question_Type_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.question.pojo.QuestionTypeInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question_type_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.scnu.question.pojo.QuestionTypeInfoExample" >
+    delete from question_type_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.question.pojo.QuestionTypeInfo" >
+    insert into question_type_info (question_Type_Id, question_Type_Name, 
+      question_Type_subjectId)
+    values (#{questionTypeId,jdbcType=INTEGER}, #{questionTypeName,jdbcType=VARCHAR}, 
+      #{questionTypeSubjectid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.question.pojo.QuestionTypeInfo" >
+    insert into question_type_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionTypeId != null" >
+        question_Type_Id,
+      </if>
+      <if test="questionTypeName != null" >
+        question_Type_Name,
+      </if>
+      <if test="questionTypeSubjectid != null" >
+        question_Type_subjectId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionTypeId != null" >
+        #{questionTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="questionTypeName != null" >
+        #{questionTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="questionTypeSubjectid != null" >
+        #{questionTypeSubjectid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.question.pojo.QuestionTypeInfoExample" resultType="java.lang.Integer" >
+    select count(*) from question_type_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question_type_info
+    <set >
+      <if test="record.questionTypeId != null" >
+        question_Type_Id = #{record.questionTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionTypeName != null" >
+        question_Type_Name = #{record.questionTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionTypeSubjectid != null" >
+        question_Type_subjectId = #{record.questionTypeSubjectid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question_type_info
+    set question_Type_Id = #{record.questionTypeId,jdbcType=INTEGER},
+      question_Type_Name = #{record.questionTypeName,jdbcType=VARCHAR},
+      question_Type_subjectId = #{record.questionTypeSubjectid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

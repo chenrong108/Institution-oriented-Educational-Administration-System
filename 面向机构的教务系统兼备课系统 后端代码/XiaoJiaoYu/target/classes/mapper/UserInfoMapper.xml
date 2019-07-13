@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.bean.UserInfo" >
+    <id column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="realname" property="realname" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="telephone" property="telephone" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, username, realname, password, telephone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where userId = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userinfo
+    where userId = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.scnu.bean.UserInfo" >
+    insert into userinfo (userId, username, realname, 
+      password, telephone)
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{realname,jdbcType=CHAR}, 
+      #{password,jdbcType=CHAR}, #{telephone,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.bean.UserInfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.bean.UserInfo" >
+    update userinfo
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=CHAR},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.bean.UserInfo" >
+    update userinfo
+    set username = #{username,jdbcType=CHAR},
+      realname = #{realname,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      telephone = #{telephone,jdbcType=CHAR}
+    where userId = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="UpdatePasswordByTelephone" parameterType="string" >
+    update userinfo
+    set password = #{password,jdbcType=CHAR} where telephone = #{telephone,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByTelephone" resultMap="BaseResultMap" parameterType="string" >
+       select
+       <include refid="Base_Column_List" />
+       from userinfo
+       where telephone = #{telephone, jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUsernameOrTelephone" resultMap="BaseResultMap" parameterType="com.scnu.bean.UserInfo" >
+       select
+       <include refid="Base_Column_List" />
+       from userinfo
+       where username = #{username, jdbcType=VARCHAR} and password = #{password, jdbcType=VARCHAR}
+        or telephone = #{telephone, jdbcType=VARCHAR} and password = #{password, jdbcType=VARCHAR}
+  </select>
+</mapper>

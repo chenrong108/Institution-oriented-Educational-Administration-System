@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.question.mapper.QuestionAssembleMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.ppt.bean.QuestionAssemble" >
+    <id column="question_Id" property="questionId" jdbcType="INTEGER" />
+    <result column="question_difficult" property="questionDifficult" jdbcType="INTEGER" />
+    <result column="question_Type_Id" property="questionTypeId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="MyBaseResultMap" type="string" >
+    <result column="question_contain" property="questionContain" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.scnu.ppt.bean.QuestionAssembleWithBLOBs" extends="BaseResultMap" >
+    <result column="question_select" property="questionSelect" jdbcType="LONGVARCHAR" />
+    <result column="question_contain" property="questionContain" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    question_Id, question_difficult, question_Type_Id
+  </sql>
+  <sql id="Blob_Column_List" >
+    question_select, question_contain
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scnu.ppt.bean.QuestionAssembleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from question_assemble
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.ppt.bean.QuestionAssembleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question_assemble
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from question_assemble
+    where question_Id = #{questionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question_assemble
+    where question_Id = #{questionId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.ppt.bean.QuestionAssembleExample" >
+    delete from question_assemble
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.ppt.bean.QuestionAssembleWithBLOBs" >
+    insert into question_assemble (question_Id, question_difficult, question_Type_Id, 
+      question_select, question_contain
+      )
+    values (#{questionId,jdbcType=INTEGER}, #{questionDifficult,jdbcType=INTEGER}, #{questionTypeId,jdbcType=INTEGER}, 
+      #{questionSelect,jdbcType=LONGVARCHAR}, #{questionContain,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.ppt.bean.QuestionAssembleWithBLOBs" >
+    insert into question_assemble
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_Id,
+      </if>
+      <if test="questionDifficult != null" >
+        question_difficult,
+      </if>
+      <if test="questionTypeId != null" >
+        question_Type_Id,
+      </if>
+      <if test="questionSelect != null" >
+        question_select,
+      </if>
+      <if test="questionContain != null" >
+        question_contain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="questionDifficult != null" >
+        #{questionDifficult,jdbcType=INTEGER},
+      </if>
+      <if test="questionTypeId != null" >
+        #{questionTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="questionSelect != null" >
+        #{questionSelect,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="questionContain != null" >
+        #{questionContain,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.ppt.bean.QuestionAssembleExample" resultType="java.lang.Integer" >
+    select count(*) from question_assemble
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question_assemble
+    <set >
+      <if test="record.questionId != null" >
+        question_Id = #{record.questionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionDifficult != null" >
+        question_difficult = #{record.questionDifficult,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionTypeId != null" >
+        question_Type_Id = #{record.questionTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionSelect != null" >
+        question_select = #{record.questionSelect,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.questionContain != null" >
+        question_contain = #{record.questionContain,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update question_assemble
+    set question_Id = #{record.questionId,jdbcType=INTEGER},
+      question_difficult = #{record.questionDifficult,jdbcType=INTEGER},
+      question_Type_Id = #{record.questionTypeId,jdbcType=INTEGER},
+      question_select = #{record.questionSelect,jdbcType=LONGVARCHAR},
+      question_contain = #{record.questionContain,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question_assemble
+    set question_Id = #{record.questionId,jdbcType=INTEGER},
+      question_difficult = #{record.questionDifficult,jdbcType=INTEGER},
+      question_Type_Id = #{record.questionTypeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.ppt.bean.QuestionAssembleWithBLOBs" >
+    update question_assemble
+    <set >
+      <if test="questionDifficult != null" >
+        question_difficult = #{questionDifficult,jdbcType=INTEGER},
+      </if>
+      <if test="questionTypeId != null" >
+        question_Type_Id = #{questionTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="questionSelect != null" >
+        question_select = #{questionSelect,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="questionContain != null" >
+        question_contain = #{questionContain,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where question_Id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scnu.ppt.bean.QuestionAssembleWithBLOBs" >
+    update question_assemble
+    set question_difficult = #{questionDifficult,jdbcType=INTEGER},
+      question_Type_Id = #{questionTypeId,jdbcType=INTEGER},
+      question_select = #{questionSelect,jdbcType=LONGVARCHAR},
+      question_contain = #{questionContain,jdbcType=LONGVARCHAR}
+    where question_Id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.ppt.bean.QuestionAssemble" >
+    update question_assemble
+    set question_difficult = #{questionDifficult,jdbcType=INTEGER},
+      question_Type_Id = #{questionTypeId,jdbcType=INTEGER}
+    where question_Id = #{questionId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getQuestionId" parameterType="string" resultType="int">
+  
+  select question_Id from question_assemble where question_select like #{knowledgeIdLike, jdbcType=VARCHAR}
+  <if test="difficultyInfo != null">
+  and question_difficult = #{difficultyInfo, jdbcType=INTEGER}
+  </if>
+  <if test="questionTypeId != null">
+  and question_Type_Id = #{questionTypeId, jdbcType=INTEGER}
+  </if>
+  
+  </select>
+  
+  <select id="getQuestionDetailList" resultType="string" >
+  
+         select question_contain from question_assemble where question_Id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}       
+        </foreach>
+     
+  </select>
+  
+  <select id="getAllQuestionDetailList" resultType="string" parameterType="int" >
+     
+     select question_contain from question_assemble where 1 = 1
+     <if test="difficultyInfo != null">
+       and question_difficult = #{difficultyInfo, jdbcType=INTEGER}
+     </if>
+     <if test="questionTypeId != null">
+       and question_Type_Id = #{questionTypeId, jdbcType=INTEGER}
+     </if>
+  
+  </select>
+</mapper>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.question.mapper.PptInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.ppt.bean.PptInfo" >
+    <id column="ppt_Id" property="pptId" jdbcType="INTEGER" />
+    <id column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="ppt_Name" property="pptName" jdbcType="VARCHAR" />
+    <result column="ppt_Img" property="pptImg" jdbcType="CHAR" />
+    <result column="ppt_Href" property="pptHref" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.scnu.ppt.bean.PptInfo" extends="BaseResultMap" >
+    <result column="html_Url" property="htmlUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ppt_Id, user_Id, ppt_Name, ppt_Img, ppt_Local_Img, ppt_Href, html_Url, html_Local_Url
+  </sql>
+  <sql id="Blob_Column_List" >
+    html_Url
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scnu.ppt.bean.PptInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ppt_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.ppt.bean.PptInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ppt_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.scnu.ppt.bean.PptInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ppt_info
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.scnu.ppt.bean.PptInfoKey" >
+    delete from ppt_info
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.ppt.bean.PptInfoExample" >
+    delete from ppt_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.ppt.bean.PptInfo" >
+    insert into ppt_info (ppt_Id, user_Id, ppt_Name, 
+      ppt_Img, ppt_Href, ppt_Preview_Pic, html_Url
+      )
+    values (#{pptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{pptName,jdbcType=VARCHAR}, 
+      #{pptImg,jdbcType=CHAR}, #{pptHref,jdbcType=CHAR}, #{pptPreviewPic, jdbcType=VARCHAR},#{htmlUrl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.ppt.bean.PptInfo" >
+    insert into ppt_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pptId != null" >
+        ppt_Id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="pptName != null" >
+        ppt_Name,
+      </if>
+      <if test="pptImg != null" >
+        ppt_Img,
+      </if>
+      <if test="pptHref != null" >
+        ppt_Href,
+      </if>
+      <if test="htmlUrl != null" >
+        html_Url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pptId != null" >
+        #{pptId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="pptName != null" >
+        #{pptName,jdbcType=VARCHAR},
+      </if>
+      <if test="pptImg != null" >
+        #{pptImg,jdbcType=CHAR},
+      </if>
+      <if test="pptHref != null" >
+        #{pptHref,jdbcType=CHAR},
+      </if>
+      <if test="htmlUrl != null" >
+        #{htmlUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.ppt.bean.PptInfoExample" resultType="java.lang.Integer" >
+    select count(*) from ppt_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ppt_info
+    <set >
+      <if test="record.pptId != null" >
+        ppt_Id = #{record.pptId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pptName != null" >
+        ppt_Name = #{record.pptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pptImg != null" >
+        ppt_Img = #{record.pptImg,jdbcType=CHAR},
+      </if>
+      <if test="record.pptHref != null" >
+        ppt_Href = #{record.pptHref,jdbcType=CHAR},
+      </if>
+      <if test="record.htmlUrl != null" >
+        html_Url = #{record.htmlUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ppt_info
+    set ppt_Id = #{record.pptId,jdbcType=INTEGER},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      ppt_Name = #{record.pptName,jdbcType=VARCHAR},
+      ppt_Img = #{record.pptImg,jdbcType=CHAR},
+      ppt_Href = #{record.pptHref,jdbcType=CHAR},
+      html_Url = #{record.htmlUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ppt_info
+    set ppt_Id = #{record.pptId,jdbcType=INTEGER},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      ppt_Name = #{record.pptName,jdbcType=VARCHAR},
+      ppt_Img = #{record.pptImg,jdbcType=CHAR},
+      ppt_Href = #{record.pptHref,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.ppt.bean.PptInfo" >
+    update ppt_info
+    <set >
+      <if test="pptName != null" >
+        ppt_Name = #{pptName,jdbcType=VARCHAR},
+      </if>
+      <if test="pptImg != null" >
+        ppt_Img = #{pptImg,jdbcType=CHAR},
+      </if>
+      <if test="pptLocalImg != null" >
+        ppt_Local_Img = #{pptLocalImg,jdbcType=CHAR},
+      </if>
+      <if test="pptHref != null" >
+        ppt_Href = #{pptHref,jdbcType=CHAR},
+      </if>
+      <if test="pptPreviewPic != null" >
+        ppt_Preview_Pic = #{pptPreviewPic,jdbcType=CHAR},
+      </if>
+      <if test="htmlUrl != null" >
+        html_Url = #{htmlUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="htmlLocalUrl != null" >
+        html_Local_Url = #{htmlLocalUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scnu.ppt.bean.PptInfo" >
+    update ppt_info
+    set ppt_Name = #{pptName,jdbcType=VARCHAR},
+      ppt_Img = #{pptImg,jdbcType=CHAR},
+      ppt_Href = #{pptHref,jdbcType=CHAR},
+      html_Url = #{htmlUrl,jdbcType=LONGVARCHAR}
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.ppt.bean.PptInfo" >
+    update ppt_info
+    set ppt_Name = #{pptName,jdbcType=VARCHAR},
+      ppt_Img = #{pptImg,jdbcType=CHAR},
+      ppt_Href = #{pptHref,jdbcType=CHAR}
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBypptIdAnduserId" resultMap="BaseResultMap" parameterType="int">
+     select ppt_Id, ppt_Name, ppt_Img, ppt_Preview_Pic, html_Url from ppt_info
+     where ppt_Id = #{pptId, jdbcType=INTEGER} and user_Id = #{userId, jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>晓教育员工账号系统</title>
+		<script src="js/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- PNotify -->
+		<link rel="stylesheet" href="pnotify/pnotify.css">
+		<link rel="stylesheet" href="pnotify/pnotify.brighttheme.css" />
+		<script type="text/javascript" src="pnotify/pnotify.js" ></script>
+		<link href="css/index.css" rel="stylesheet">
+		<script>
+			window.jQuery || document.write('<script src="/static/js/jquery.min.js"><\/script>');
+		</script>
+		<!-- <script type="text/javascript" src="js/xintiao.js" ></script> -->
+	</head>
+
+	<body class="login">
+		<div style="display:none">
+			<div id="_umfp" style="display:inline;width:1px;height:1px;overflow:hidden"></div>
+		</div>
+		<div class="login_banner">
+			<div class="login_content">
+				<div class="pull-left img_box">
+					<img src="images/login_logo.png">
+				</div>
+				<div class="pull-left light"></div>
+				<div class="pull-left form_box">
+					<h1>员工账号系统</h1>
+					<ul>
+						<li> <input id="signin-username" type="text" name="username" class="login_text" placeholder="请输入您的账号/手机号/工号"> <img src="images/username_icon.png">
+							<div class="light"></div>
+						</li>
+						<li> <input id="signin-password" type="password" name="password" class="login_text" placeholder="请输入您的密码"> <img src="images/password_icon.png">
+							<div class="light"></div>
+						</li>
+						<div class="login-input-group" id="captcha-div" style="display:none;">
+							<center>
+								<div class="ln">
+									<div id="aliyun-nc-captcha"></div>
+								</div>
+							</center>
+						</div>
+					</ul>
+					<button id="signin-btn">登&nbsp;&nbsp;录</button>
+					<!--<label>-->
+					<!--<input type="checkbox" id="signin-remember-me">-->
+					<!--<span>记住我（公共电脑请谨慎使用）</span>-->
+					<!--</label>-->
+					<a href="forget_password.html">忘记密码？</a>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		
+	    var localObj = window.location;
+
+        var basePath = localObj.protocol+"//"+localObj.host;
+
+        var server_context=basePath;  // 获取服务器的地址
+        
+			//定义了一个获取元素的方法
+			function getEle(id) {
+				return document.getElementById(id);
+			}
+			
+			var signinBtn = getEle("signin-btn");
+			signinBtn.onclick = signBtnClickHandler;
+			
+			function signBtnClickHandler(){
+				var signinUsernameInput = getEle("signin-username"),
+					signinPasswordInput = getEle("signin-password");
+					
+				var username = signinUsernameInput.value;
+				var password = signinPasswordInput.value;
+				var telephone = username;
+				
+				if(username==""||password==""){
+					new PNotify({
+      					title: '出错啦',
+      					text: '用户名不存在或密码不正确',
+      					type: 'error',
+      					delay: 3000
+    				});
+				}else{
+					//给服务器发送请求，查数据库
+					var taf = false;
+					$.ajax({
+						type : "post",
+						url : server_context + "/user/login",
+						async : false,
+						data : {"username" : username, "password" : password, "telephone" : telephone},
+						success : function(result){
+							taf = result;
+						},
+						error : function(result){
+							//alert("发送请求错误");
+						}
+					});
+					
+					if(taf){  // 登录成功
+						/* new PNotify({
+	      					title: '成功啦',
+	      					text: '登录成功',
+	      					type: 'success',
+	      					delay: 3000
+	    				}); */
+	    				window.location.href = "http://119.23.243.103";
+					}else{   // 登录失败
+						new PNotify({
+	      					title: '出错啦',
+	      					text: '用户名不存在或密码不正确',
+	      					type: 'error',
+	      					delay: 3000
+	    				});
+					}
+							
+				}
+			}
+		</script>
+	</body>
+
+</html>

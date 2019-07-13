@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.dao.BusinessMapper">
+ 
+    <resultMap id="queryForListMap" type="com.scnu.bean.Business">
+        <result column="business_Id" property="id" jdbcType="INTEGER"/>
+        <result column="business_Name" property="name" jdbcType="VARCHAR"/>
+        <collection property="children" javaType="java.util.List" ofType="com.scnu.bean.Corporation">
+            <result column="corporation_Id" property="id" jdbcType="INTEGER" />
+            <result column="corporation_Name" property="name" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+    <select id="queryForList" resultMap="queryForListMap">
+    
+        SELECT
+          u.business_Id ,
+          u.business_Name,
+          s.corporation_Id,
+          s.corporation_Name
+          
+        FROM
+        (  bussinessinfo u
+        LEFT JOIN
+          corporationinfo s
+        ON
+          u.business_Id = s.business_Id
+        )    
+          
+    </select>
+    
+</mapper>

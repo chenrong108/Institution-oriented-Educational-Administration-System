@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.question.mapper.LectureMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.ppt.bean.Lecture" >
+    <id column="ppt_Id" property="pptId" jdbcType="INTEGER" />
+    <id column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="section_Id" property="sectionId" jdbcType="INTEGER" />
+    <result column="subject_Id" property="subjectId" jdbcType="INTEGER" />
+    <result column="business_Id" property="businessId" jdbcType="INTEGER" />
+    <result column="publish_Version_Id" property="publishVersionId" jdbcType="INTEGER" />
+    <result column="grade_Id" property="gradeId" jdbcType="INTEGER" />
+    <result column="year_Id" property="yearId" jdbcType="INTEGER" />
+    <result column="coporation_Id" property="coporationId" jdbcType="INTEGER" />
+    <result column="product_Line_Id" property="productLineId" jdbcType="INTEGER" />
+    <result column="season_Id" property="seasonId" jdbcType="INTEGER" />
+    <result column="book_Version_Id" property="bookVersionId" jdbcType="INTEGER" />
+    <result column="text_Book_Id" property="textBookId" jdbcType="INTEGER" />
+    <result column="material_Type_Id" property="materialTypeId" jdbcType="INTEGER" />
+    <result column="class_Type_Id" property="classTypeId" jdbcType="INTEGER" />
+    <result column="adaptive_Area_Id" property="adaptiveAreaId" jdbcType="INTEGER" />
+    <result column="review_Progress_Id" property="reviewProgressId" jdbcType="INTEGER" />
+    <result column="create_Time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ppt_Id, user_Id, section_Id, subject_Id, business_Id, publish_Version_Id, grade_Id, 
+    year_Id, coporation_Id, product_Line_Id, season_Id, book_Version_Id, text_Book_Id, 
+    material_Type_Id, class_Type_Id, adaptive_Area_Id, review_Progress_Id, create_Time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.ppt.bean.LectureExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lecture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.scnu.ppt.bean.LectureKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from lecture
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.scnu.ppt.bean.LectureKey" >
+    delete from lecture
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.ppt.bean.LectureExample" >
+    delete from lecture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.ppt.bean.Lecture" >
+    insert into lecture (ppt_Id, user_Id, section_Id, 
+      subject_Id, business_Id, publish_Version_Id, 
+      grade_Id, year_Id, coporation_Id, 
+      product_Line_Id, season_Id, book_Version_Id, 
+      text_Book_Id, material_Type_Id, class_Type_Id, 
+      adaptive_Area_Id, review_Progress_Id, create_Time
+      )
+    values (#{pptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, 
+      #{subjectId,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{publishVersionId,jdbcType=INTEGER}, 
+      #{gradeId,jdbcType=INTEGER}, #{yearId,jdbcType=INTEGER}, #{coporationId,jdbcType=INTEGER}, 
+      #{productLineId,jdbcType=INTEGER}, #{seasonId,jdbcType=INTEGER}, #{bookVersionId,jdbcType=INTEGER}, 
+      #{textBookId,jdbcType=INTEGER}, #{materialTypeId,jdbcType=INTEGER}, #{classTypeId,jdbcType=INTEGER}, 
+      #{adaptiveAreaId,jdbcType=INTEGER}, #{reviewProgressId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.ppt.bean.Lecture" >
+    insert into lecture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pptId != null" >
+        ppt_Id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="sectionId != null" >
+        section_Id,
+      </if>
+      <if test="subjectId != null" >
+        subject_Id,
+      </if>
+      <if test="businessId != null" >
+        business_Id,
+      </if>
+      <if test="publishVersionId != null" >
+        publish_Version_Id,
+      </if>
+      <if test="gradeId != null" >
+        grade_Id,
+      </if>
+      <if test="yearId != null" >
+        year_Id,
+      </if>
+      <if test="coporationId != null" >
+        coporation_Id,
+      </if>
+      <if test="productLineId != null" >
+        product_Line_Id,
+      </if>
+      <if test="seasonId != null" >
+        season_Id,
+      </if>
+      <if test="bookVersionId != null" >
+        book_Version_Id,
+      </if>
+      <if test="textBookId != null" >
+        text_Book_Id,
+      </if>
+      <if test="materialTypeId != null" >
+        material_Type_Id,
+      </if>
+      <if test="classTypeId != null" >
+        class_Type_Id,
+      </if>
+      <if test="adaptiveAreaId != null" >
+        adaptive_Area_Id,
+      </if>
+      <if test="reviewProgressId != null" >
+        review_Progress_Id,
+      </if>
+      <if test="createTime != null" >
+        create_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pptId != null" >
+        #{pptId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="businessId != null" >
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="publishVersionId != null" >
+        #{publishVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="yearId != null" >
+        #{yearId,jdbcType=INTEGER},
+      </if>
+      <if test="coporationId != null" >
+        #{coporationId,jdbcType=INTEGER},
+      </if>
+      <if test="productLineId != null" >
+        #{productLineId,jdbcType=INTEGER},
+      </if>
+      <if test="seasonId != null" >
+        #{seasonId,jdbcType=INTEGER},
+      </if>
+      <if test="bookVersionId != null" >
+        #{bookVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="textBookId != null" >
+        #{textBookId,jdbcType=INTEGER},
+      </if>
+      <if test="materialTypeId != null" >
+        #{materialTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="classTypeId != null" >
+        #{classTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="adaptiveAreaId != null" >
+        #{adaptiveAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewProgressId != null" >
+        #{reviewProgressId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.ppt.bean.LectureExample" resultType="java.lang.Integer" >
+    select count(*) from lecture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lecture
+    <set >
+      <if test="record.pptId != null" >
+        ppt_Id = #{record.pptId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sectionId != null" >
+        section_Id = #{record.sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.subjectId != null" >
+        subject_Id = #{record.subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessId != null" >
+        business_Id = #{record.businessId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishVersionId != null" >
+        publish_Version_Id = #{record.publishVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradeId != null" >
+        grade_Id = #{record.gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.yearId != null" >
+        year_Id = #{record.yearId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coporationId != null" >
+        coporation_Id = #{record.coporationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productLineId != null" >
+        product_Line_Id = #{record.productLineId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seasonId != null" >
+        season_Id = #{record.seasonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookVersionId != null" >
+        book_Version_Id = #{record.bookVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.textBookId != null" >
+        text_Book_Id = #{record.textBookId,jdbcType=INTEGER},
+      </if>
+      <if test="record.materialTypeId != null" >
+        material_Type_Id = #{record.materialTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classTypeId != null" >
+        class_Type_Id = #{record.classTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adaptiveAreaId != null" >
+        adaptive_Area_Id = #{record.adaptiveAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewProgressId != null" >
+        review_Progress_Id = #{record.reviewProgressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lecture
+    set ppt_Id = #{record.pptId,jdbcType=INTEGER},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      section_Id = #{record.sectionId,jdbcType=INTEGER},
+      subject_Id = #{record.subjectId,jdbcType=INTEGER},
+      business_Id = #{record.businessId,jdbcType=INTEGER},
+      publish_Version_Id = #{record.publishVersionId,jdbcType=INTEGER},
+      grade_Id = #{record.gradeId,jdbcType=INTEGER},
+      year_Id = #{record.yearId,jdbcType=INTEGER},
+      coporation_Id = #{record.coporationId,jdbcType=INTEGER},
+      product_Line_Id = #{record.productLineId,jdbcType=INTEGER},
+      season_Id = #{record.seasonId,jdbcType=INTEGER},
+      book_Version_Id = #{record.bookVersionId,jdbcType=INTEGER},
+      text_Book_Id = #{record.textBookId,jdbcType=INTEGER},
+      material_Type_Id = #{record.materialTypeId,jdbcType=INTEGER},
+      class_Type_Id = #{record.classTypeId,jdbcType=INTEGER},
+      adaptive_Area_Id = #{record.adaptiveAreaId,jdbcType=INTEGER},
+      review_Progress_Id = #{record.reviewProgressId,jdbcType=INTEGER},
+      create_Time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.ppt.bean.Lecture" >
+    update lecture
+    <set >
+      <if test="sectionId != null" >
+        section_Id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="subjectId != null" >
+        subject_Id = #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="businessId != null" >
+        business_Id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="publishVersionId != null" >
+        publish_Version_Id = #{publishVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="gradeId != null" >
+        grade_Id = #{gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="yearId != null" >
+        year_Id = #{yearId,jdbcType=INTEGER},
+      </if>
+      <if test="coporationId != null" >
+        coporation_Id = #{coporationId,jdbcType=INTEGER},
+      </if>
+      <if test="productLineId != null" >
+        product_Line_Id = #{productLineId,jdbcType=INTEGER},
+      </if>
+      <if test="seasonId != null" >
+        season_Id = #{seasonId,jdbcType=INTEGER},
+      </if>
+      <if test="bookVersionId != null" >
+        book_Version_Id = #{bookVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="textBookId != null" >
+        text_Book_Id = #{textBookId,jdbcType=INTEGER},
+      </if>
+      <if test="materialTypeId != null" >
+        material_Type_Id = #{materialTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="classTypeId != null" >
+        class_Type_Id = #{classTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="adaptiveAreaId != null" >
+        adaptive_Area_Id = #{adaptiveAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewProgressId != null" >
+        review_Progress_Id = #{reviewProgressId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_Time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.ppt.bean.Lecture" >
+    update lecture
+    set section_Id = #{sectionId,jdbcType=INTEGER},
+      subject_Id = #{subjectId,jdbcType=INTEGER},
+      business_Id = #{businessId,jdbcType=INTEGER},
+      publish_Version_Id = #{publishVersionId,jdbcType=INTEGER},
+      grade_Id = #{gradeId,jdbcType=INTEGER},
+      year_Id = #{yearId,jdbcType=INTEGER},
+      coporation_Id = #{coporationId,jdbcType=INTEGER},
+      product_Line_Id = #{productLineId,jdbcType=INTEGER},
+      season_Id = #{seasonId,jdbcType=INTEGER},
+      book_Version_Id = #{bookVersionId,jdbcType=INTEGER},
+      text_Book_Id = #{textBookId,jdbcType=INTEGER},
+      material_Type_Id = #{materialTypeId,jdbcType=INTEGER},
+      class_Type_Id = #{classTypeId,jdbcType=INTEGER},
+      adaptive_Area_Id = #{adaptiveAreaId,jdbcType=INTEGER},
+      review_Progress_Id = #{reviewProgressId,jdbcType=INTEGER},
+      create_Time = #{createTime,jdbcType=TIMESTAMP}
+    where ppt_Id = #{pptId,jdbcType=INTEGER}
+      and user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectByLectureSelective" parameterType="com.scnu.ppt.bean.Lecture" resultType="java.lang.Integer">
+        select ppt_Id from lecture
+        where 
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER}
+      </if>
+      <if test="record.sectionId != null" >
+         and  section_Id = #{record.sectionId,jdbcType=INTEGER}
+      </if>
+      <if test="record.subjectId != null" >
+         and subject_Id = #{record.subjectId,jdbcType=INTEGER}
+      </if>
+      <if test="record.businessId != null" >
+         and business_Id = #{record.businessId,jdbcType=INTEGER}
+      </if>
+      <if test="record.publishVersionId != null" >
+         and publish_Version_Id = #{record.publishVersionId,jdbcType=INTEGER}
+      </if>
+      <if test="record.gradeId != null" >
+         and grade_Id = #{record.gradeId,jdbcType=INTEGER}
+      </if>
+      <if test="record.yearId != null" >
+         and year_Id = #{record.yearId,jdbcType=INTEGER}
+      </if>
+      <if test="record.coporationId != null" >
+         and coporation_Id = #{record.coporationId,jdbcType=INTEGER}
+      </if>
+      <if test="record.productLineId != null" >
+         and product_Line_Id = #{record.productLineId,jdbcType=INTEGER}
+      </if>
+      <if test="record.seasonId != null" >
+         and season_Id = #{record.seasonId,jdbcType=INTEGER}
+      </if>
+      <if test="record.bookVersionId != null" >
+         and book_Version_Id = #{record.bookVersionId,jdbcType=INTEGER}
+      </if>
+      <if test="record.textBookId != null" >
+         and text_Book_Id = #{record.textBookId,jdbcType=INTEGER}
+      </if>
+      <if test="record.materialTypeId != null" >
+         and material_Type_Id = #{record.materialTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="record.classTypeId != null" >
+         and class_Type_Id = #{record.classTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="record.adaptiveAreaId != null" >
+         and adaptive_Area_Id = #{record.adaptiveAreaId,jdbcType=INTEGER}
+      </if>
+      <if test="record.reviewProgressId != null" >
+         and review_Progress_Id = #{record.reviewProgressId,jdbcType=INTEGER}
+      </if>
+      <if test="record.createTime != null" >
+         and create_Time = #{record.createTime,jdbcType=TIMESTAMP}
+      </if>
+      order by create_Time desc;
+  </select>
+</mapper>

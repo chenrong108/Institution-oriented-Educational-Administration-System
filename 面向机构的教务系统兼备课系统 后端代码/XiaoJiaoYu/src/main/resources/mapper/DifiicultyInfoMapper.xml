@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.question.mapper.DifiicultyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.question.pojo.DifiicultyInfo" >
+    <id column="difficulty_Info" property="difficultyInfo" jdbcType="INTEGER" />
+    <result column="difficulty_Name" property="difficultyName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    difficulty_Info, difficulty_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.question.pojo.DifiicultyInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from difiiculty_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from difiiculty_info
+    where difficulty_Info = #{difficultyInfo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from difiiculty_info
+    where difficulty_Info = #{difficultyInfo,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.question.pojo.DifiicultyInfoExample" >
+    delete from difiiculty_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.question.pojo.DifiicultyInfo" >
+    insert into difiiculty_info (difficulty_Info, difficulty_Name)
+    values (#{difficultyInfo,jdbcType=INTEGER}, #{difficultyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.question.pojo.DifiicultyInfo" >
+    insert into difiiculty_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="difficultyInfo != null" >
+        difficulty_Info,
+      </if>
+      <if test="difficultyName != null" >
+        difficulty_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="difficultyInfo != null" >
+        #{difficultyInfo,jdbcType=INTEGER},
+      </if>
+      <if test="difficultyName != null" >
+        #{difficultyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.question.pojo.DifiicultyInfoExample" resultType="java.lang.Integer" >
+    select count(*) from difiiculty_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update difiiculty_info
+    <set >
+      <if test="record.difficultyInfo != null" >
+        difficulty_Info = #{record.difficultyInfo,jdbcType=INTEGER},
+      </if>
+      <if test="record.difficultyName != null" >
+        difficulty_Name = #{record.difficultyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update difiiculty_info
+    set difficulty_Info = #{record.difficultyInfo,jdbcType=INTEGER},
+      difficulty_Name = #{record.difficultyName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.question.pojo.DifiicultyInfo" >
+    update difiiculty_info
+    <set >
+      <if test="difficultyName != null" >
+        difficulty_Name = #{difficultyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where difficulty_Info = #{difficultyInfo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.question.pojo.DifiicultyInfo" >
+    update difiiculty_info
+    set difficulty_Name = #{difficultyName,jdbcType=VARCHAR}
+    where difficulty_Info = #{difficultyInfo,jdbcType=INTEGER}
+  </update>
+</mapper>

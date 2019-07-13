@@ -1,0 +1,422 @@
+{
+  "businessType": [
+    {
+      "name": "星火十人课堂",
+      "value": 1,
+      "children": [
+        {
+          "name": "标准版",
+          "value": 1
+        },
+        {
+          "name": "东莞分公司",
+          "value": 2
+        },
+        {
+          "name": "佛山分公司",
+          "value": 3
+        },
+        {
+          "name": "中山分公司",
+          "value": 4
+        },
+        {
+          "name": "惠州分公司",
+          "value": 5
+        },
+        {
+          "name": "顺德分公司",
+          "value": 6
+        },
+        {
+          "name": "江门分公司",
+          "value": 7
+        },
+        {
+          "name": "珠海分公司",
+          "value": 8
+        },
+        {
+          "name": "湛江分公司",
+          "value": 9
+        },
+        {
+          "name": "广州分公司",
+          "value": 10
+        },
+        {
+          "name": "杭州分公司",
+          "value": 11
+        },
+        {
+          "name": "台州分公司",
+          "value": 12
+        },
+        {
+          "name": "金华分公司",
+          "value": 13
+        },
+        {
+          "name": "温州分公司",
+          "value": 14
+        },
+        {
+          "name": "绍兴分公司",
+          "value": 15
+        },
+        {
+          "name": "嘉兴分公司",
+          "value": 16
+        }
+      ]
+    },
+    {
+      "name": "晓培优",
+      "value": 2,
+      "children": [
+        {
+          "name": "标准版",
+          "value": 17
+        },
+        {
+          "name": "培优广州分校",
+          "value": 18
+        },
+        {
+          "name": "培优佛山分校",
+          "value": 19
+        },
+        {
+          "name": "培优中山分校",
+          "value": 20
+        },
+        {
+          "name": "培优东莞分校",
+          "value": 21
+        }
+      ]
+    },
+    {
+      "name": "晓双师",
+      "value": 3,
+      "children": [
+        {
+          "name": "标准版",
+          "value": 22
+        },
+        {
+          "name": "晓师清远分校",
+          "value": 23
+        },
+        {
+          "name": "晓师佛山分校",
+          "value": 24
+        },
+        {
+          "name": "晓师东莞分校",
+          "value": 25
+        },
+        {
+          "name": "晓师中山分校",
+          "value": 26
+        },
+        {
+          "name": "晓师江门分校",
+          "value": 27
+        }
+      ]
+    }
+  ],
+  "useScope": [
+    "来源"
+  ],
+  "year": [
+    {
+      "name": 2019,
+      "value": 2019
+    },
+    {
+      "name": 2018,
+      "value":2018
+    },
+    {
+      "name": 2017,
+      "value":2017
+    }
+  ],
+  "productLine": [
+    {
+      "name": "长期班",
+      "value": 1
+    },
+    {
+      "name": "短期班",
+      "value": 2
+    }
+  ],
+  "publishVersion": [
+    {
+      "name": "苏教版",
+      "value": 1
+    },
+    {
+      "name": "人教A版",
+      "value": 2
+    },
+    {
+      "name": "北师大版",
+      "value": 3
+    },
+    {
+      "name": "人教B版",
+      "value": 4
+    }
+  ],
+  "season": [
+    {
+      "name": "暑假",
+      "value": 1
+    },
+    {
+      "name": "秋季",
+      "value": 2
+    },
+    {
+      "name": "寒假",
+      "value": 3
+    },
+    {
+      "name": "春季",
+      "value": 4
+    }
+  ],
+  "section": [
+    {
+      "value": 2,
+      "id": "section_2",
+      "name": "初中",
+      "children": [
+        {
+          "value": 5,
+          "id": "subject_5",
+          "name": "数学"
+        },
+        {
+          "value": 14,
+          "id": "subject_14",
+          "name": "物理"
+        }
+      ]
+    },
+    {
+      "value": 3,
+      "id": "section_3",
+      "name": "高中",
+      "children": [
+        {
+          "value": 18,
+          "id": "subject_18",
+          "name": "数学"
+        },
+        {
+          "value": 20,
+          "id": "subject_20",
+          "name": "物理"
+        }
+      ]
+    }
+  ],
+  "grade": [
+    {
+      "value": 10,
+      "id": "grade_10",
+      "name": "高一"
+    },
+    {
+      "value": 11,
+      "id": "grade_11",
+      "name": "高二"
+    },
+    {
+      "value": 12,
+      "id": "grade_12",
+      "name": "高考"
+    }
+  ],
+  "bookVersion": [
+    {
+      "value": "424",
+      "id": "bnookVersionId_424",
+      "name": "必修一"
+    },
+    {
+      "value": 425,
+      "id": "bookVersionId_425",
+      "name": "必修二"
+    },
+    {
+      "value": 426,
+      "id": "bookVersionId_426",
+      "name": "必修三"
+    },
+    {
+      "value": 427,
+      "id": "bookVersionId_427",
+      "name": "必修四一"
+    },
+    {
+      "value": 428,
+      "id": "bookVersionId_428",
+      "name": "必修五"
+    },
+    {
+      "value": 429,
+      "id": "bookVersionId_429",
+      "name": "选修1-1"
+    },
+    {
+      "value": 430,
+      "id": "bookVersionId_430",
+      "name": "选修1-2"
+    },
+    {
+      "value": 431,
+      "id": "bookVersionId_431",
+      "name": "选修2-1"
+    },
+    {
+      "value": 432,
+      "id": "bookVersionId_422",
+      "name": "选修2-2"
+    }
+  ],
+  "sceneType": [
+    {
+      "value": 1,
+      "id": "scenetype_1",
+      "name": "预习"
+    },
+    {
+      "value": 2,
+      "id": "scenetype_2",
+      "name": "复习"
+    }
+  ],
+  "adaptiveAreas": [],
+  "reviewProgress": [
+    {
+      "value": 1,
+      "id": "reviewProgress_1",
+      "name": "一轮复习"
+    },
+    {
+      "value": 2,
+      "id": "reviewProgress_2",
+      "name": "二轮复习"
+    },
+    {
+      "value": 3,
+      "id": "reviewProgress_3",
+      "name": "三轮复习"
+    }
+  ],
+  "classType": [
+    {
+      "value": 4,
+      "id": "classType_4",
+      "name": "基础班"
+    },
+    {
+      "value": 1,
+      "id": "classType_1",
+      "name": "提高班"
+    },
+    {
+      "value": 2,
+      "id": "classType_2",
+      "name": "尖子班"
+    },
+    {
+      "value": 5,
+      "id": "classType_5",
+      "name": "创新B班"
+    },
+    {
+      "value": 3,
+      "id": "classType_3",
+      "name": "满分目标班"
+    },
+    {
+      "value": 6,
+      "id": "classType_6",
+      "name": "创新A班"
+    },
+    {
+      "value": 7,
+      "id": "classType_7",
+      "name": "冲刺班"
+    },
+    {
+      "value": 8,
+      "id": "classType_8",
+      "name": "实验班"
+    }
+  ],
+  "materialType": [
+    {
+      "value": 1,
+      "id": "materialTypeId_1",
+      "name": "A型教材"
+    },
+    {
+      "value": 3,
+      "id": "materialTypeId_3",
+      "name": "B型教材"
+    },
+    {
+      "value": 4,
+      "id": "materialTypeId_4",
+      "name": "C型教材"
+    },
+    {
+      "value": 5,
+      "id": "materialTypeId_5",
+      "name": "X型教材"
+    },
+    {
+      "value": 6,
+      "id": "materialTypeId_6",
+      "name": "Y型教材"
+    },
+    {
+      "value": 7,
+      "id": "materialTypeId_7",
+      "name": "Z型教材"
+    },
+    {
+      "value": 8,
+      "id": "materialTypeId_8",
+      "name": "S型教材"
+    },
+    {
+      "value": 9,
+      "id": "materialTypeId_9",
+      "name": "E型教材"
+    },
+    {
+      "value": 10,
+      "id": "materialTypeId_10",
+      "name": "Xb型教材"
+    },
+    {
+      "value": 11,
+      "id": "materialTypeId_11",
+      "name": "Xc型教材"
+    },
+    {
+      "value": 12,
+      "id": "materialTypeId_12",
+      "name": "Q型教材"
+    }
+  ]
+}

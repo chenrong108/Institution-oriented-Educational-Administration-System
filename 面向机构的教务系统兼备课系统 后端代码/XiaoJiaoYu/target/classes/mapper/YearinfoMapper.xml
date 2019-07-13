@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.teach.mapper.YearinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.teach.pojo.Yearinfo" >
+    <id column="year_Id" property="id" jdbcType="INTEGER" />
+    <result column="year_Name" property="name" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    year_Id, year_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.teach.pojo.YearinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yearinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <!-- 年份倒序 -->
+    order by year_Id desc
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yearinfo
+    where year_Id = #{yearId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yearinfo
+    where year_Id = #{yearId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.teach.pojo.YearinfoExample" >
+    delete from yearinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.teach.pojo.Yearinfo" >
+    insert into yearinfo (year_Id, year_Name)
+    values (#{yearId,jdbcType=INTEGER}, #{yearName,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.teach.pojo.Yearinfo" >
+    insert into yearinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yearId != null" >
+        year_Id,
+      </if>
+      <if test="yearName != null" >
+        year_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yearId != null" >
+        #{yearId,jdbcType=INTEGER},
+      </if>
+      <if test="yearName != null" >
+        #{yearName,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.teach.pojo.YearinfoExample" resultType="java.lang.Integer" >
+    select count(*) from yearinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yearinfo
+    <set >
+      <if test="record.yearId != null" >
+        year_Id = #{record.yearId,jdbcType=INTEGER},
+      </if>
+      <if test="record.yearName != null" >
+        year_Name = #{record.yearName,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yearinfo
+    set year_Id = #{record.yearId,jdbcType=INTEGER},
+      year_Name = #{record.yearName,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.teach.pojo.Yearinfo" >
+    update yearinfo
+    <set >
+      <if test="yearName != null" >
+        year_Name = #{yearName,jdbcType=CHAR},
+      </if>
+    </set>
+    where year_Id = #{yearId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.teach.pojo.Yearinfo" >
+    update yearinfo
+    set year_Name = #{yearName,jdbcType=CHAR}
+    where year_Id = #{yearId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.question.mapper.TikuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.question.pojo.TikuInfo" >
+    <id column="tiku_Id" property="tikuId" jdbcType="INTEGER" />
+    <result column="tiku_Name" property="tikuName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tiku_Id, tiku_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.question.pojo.TikuInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tiku_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tiku_info
+    where tiku_Id = #{tikuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tiku_info
+    where tiku_Id = #{tikuId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.question.pojo.TikuInfoExample" >
+    delete from tiku_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.question.pojo.TikuInfo" >
+    insert into tiku_info (tiku_Id, tiku_Name)
+    values (#{tikuId,jdbcType=INTEGER}, #{tikuName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.question.pojo.TikuInfo" >
+    insert into tiku_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tikuId != null" >
+        tiku_Id,
+      </if>
+      <if test="tikuName != null" >
+        tiku_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tikuId != null" >
+        #{tikuId,jdbcType=INTEGER},
+      </if>
+      <if test="tikuName != null" >
+        #{tikuName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.question.pojo.TikuInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tiku_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tiku_info
+    <set >
+      <if test="record.tikuId != null" >
+        tiku_Id = #{record.tikuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tikuName != null" >
+        tiku_Name = #{record.tikuName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tiku_info
+    set tiku_Id = #{record.tikuId,jdbcType=INTEGER},
+      tiku_Name = #{record.tikuName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.question.pojo.TikuInfo" >
+    update tiku_info
+    <set >
+      <if test="tikuName != null" >
+        tiku_Name = #{tikuName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tiku_Id = #{tikuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.question.pojo.TikuInfo" >
+    update tiku_info
+    set tiku_Name = #{tikuName,jdbcType=VARCHAR}
+    where tiku_Id = #{tikuId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.teach.mapper.CorporationinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.teach.pojo.Corporationinfo" >
+    <id column="corporation_Id" property="corporationId" jdbcType="INTEGER" />
+    <result column="corporation_Name" property="corporationName" jdbcType="CHAR" />
+    <result column="business_Id" property="businessId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    corporation_Id, corporation_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.teach.pojo.CorporationinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from corporationinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from corporationinfo
+    where corporation_Id = #{corporationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from corporationinfo
+    where corporation_Id = #{corporationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.teach.pojo.CorporationinfoExample" >
+    delete from corporationinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.teach.pojo.Corporationinfo" >
+    insert into corporationinfo (corporation_Id, corporation_Name, business_Id
+      )
+    values (#{corporationId,jdbcType=INTEGER}, #{corporationName,jdbcType=CHAR}, #{businessId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.teach.pojo.Corporationinfo" >
+    insert into corporationinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="corporationId != null" >
+        corporation_Id,
+      </if>
+      <if test="corporationName != null" >
+        corporation_Name,
+      </if>
+      <if test="businessId != null" >
+        business_Id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="corporationId != null" >
+        #{corporationId,jdbcType=INTEGER},
+      </if>
+      <if test="corporationName != null" >
+        #{corporationName,jdbcType=CHAR},
+      </if>
+      <if test="businessId != null" >
+        #{businessId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.teach.pojo.CorporationinfoExample" resultType="java.lang.Integer" >
+    select count(*) from corporationinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update corporationinfo
+    <set >
+      <if test="record.corporationId != null" >
+        corporation_Id = #{record.corporationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.corporationName != null" >
+        corporation_Name = #{record.corporationName,jdbcType=CHAR},
+      </if>
+      <if test="record.businessId != null" >
+        business_Id = #{record.businessId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update corporationinfo
+    set corporation_Id = #{record.corporationId,jdbcType=INTEGER},
+      corporation_Name = #{record.corporationName,jdbcType=CHAR},
+      business_Id = #{record.businessId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.teach.pojo.Corporationinfo" >
+    update corporationinfo
+    <set >
+      <if test="corporationName != null" >
+        corporation_Name = #{corporationName,jdbcType=CHAR},
+      </if>
+      <if test="businessId != null" >
+        business_Id = #{businessId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where corporation_Id = #{corporationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.teach.pojo.Corporationinfo" >
+    update corporationinfo
+    set corporation_Name = #{corporationName,jdbcType=CHAR},
+      business_Id = #{businessId,jdbcType=INTEGER}
+    where corporation_Id = #{corporationId,jdbcType=INTEGER}
+  </update>
+</mapper>

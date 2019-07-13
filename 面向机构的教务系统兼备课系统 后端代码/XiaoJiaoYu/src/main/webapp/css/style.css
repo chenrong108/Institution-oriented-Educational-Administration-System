@@ -1,0 +1,483 @@
+/**------------------说明begin---------------------------------**/
+
+
+/*    1.ex表示extra    2.BEM命名：BEM的意思就是块（block）、元素（element）、修饰符（modifier）    __双下划线代表B和E连接例如 menu__item    --双中划线代表B和M或E和M的连接 例如 menu--active 或 menu__item--active    -中划线同英语里做连字符例如 mod-menu 或 mod-menu__item 这里 B或E或M需要多个单词来描述,就使用中划线  */
+
+
+/**------------------说明end---------------------------------**/
+
+
+/**------------------Reset begin---------------------------------**/
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+img,
+q,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif, "宋体", "FZLTXIHK";
+}
+
+body {
+	line-height: 1;
+}
+
+a {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #cccccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+input,
+select {
+	vertical-align: middle;
+}
+
+nav,
+ul {
+	list-style: none;
+}
+
+
+/**------------------Reset end---------------------------------**/
+
+
+/**------------------颜色begin---------------------------------**/
+
+
+/*紫蓝色*/
+
+.c--purple-blue {
+	color: #4e82f8
+}
+
+
+/*更浅的黑色*/
+
+.c--ex-light-black {
+	color: #555555
+}
+
+
+/*浅黑色*/
+
+.c--light-black {
+	color: #333333
+}
+
+.c--white {
+	color: #ffffff
+}
+
+
+/**------------------颜色end---------------------------------**/
+
+
+/**------------------背景颜色begin---------------------------------**/
+
+.bg--brown {
+	background-color: #3f3a39
+}
+
+.bg--light-gray {
+	background-color: #f6f6f6
+}
+
+.bg--white {
+	background-color: #ffffff
+}
+
+
+/**------------------背景颜色end---------------------------------**/
+
+
+/**------------------字体大小begin---------------------------------**/
+
+.fs--ex-ex-small {
+	font-size: 12px
+}
+
+.fs--ex-small {
+	font-size: 13px
+}
+
+.fs--small {
+	font-size: 14px
+}
+
+.fs--medium {
+	font-size: 16px
+}
+
+.fs--large {
+	font-size: 18px
+}
+
+.fs--ex-large {
+	font-size: 20px
+}
+
+.fs--ex-ex-large {
+	font-size: 28px
+}
+
+
+/**------------------字体大小end---------------------------------**/
+
+
+/**------------------字体begin---------------------------------**/
+
+.fw--b {
+	font-weight: bold;
+}
+
+
+/**------------------字体end---------------------------------**/
+
+
+/**------------------flex布局begin---------------------------------**/
+
+.flex--df {
+	display: flex;
+}
+
+.flex--f1 {
+	flex: 1;
+}
+
+.flex--jcc {
+	justify-content: center
+}
+
+.flex--jcsb {
+	justify-content: space-between
+}
+
+.flex--jcsa {
+	justify-content: space-around
+}
+
+.flex--jcfs {
+	justify-content: flex-start
+}
+
+.flex--aic {
+	align-items: center
+}
+
+.flex--aifs {
+	align-items: flex-start
+}
+
+.flex--fdc {
+	flex-direction: column
+}
+
+
+/**------------------flex布局end---------------------------------**/
+
+
+/**------------------通用缩写begin---------------------------------**/
+
+.w--100 {
+	width: 100%
+}
+
+.tc {
+	text-align: center;
+}
+
+
+/**------------------通用缩写end---------------------------------**/
+
+
+/*头部导航栏*/
+
+.nav__header {
+	height: 70px;
+	width: 100%;
+	background-color: #3f3a39;
+	position: relative;
+}
+
+.nav__main {
+	width: 1024px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -512px;
+	margin-top: -26px;
+}
+
+
+/*面包屑*/
+
+.crumb {
+	padding: 0 26px;
+	line-height: 52px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	color: #555;
+}
+
+.crumb__left {
+	display: flex;
+}
+
+.crumb__left>li,
+.crumb__right {
+	cursor: pointer;
+}
+
+.crumb--have-parting-line:after {
+	content: "";
+	display: inline-block;
+	height: 11px;
+	width: 1px;
+	background-color: #999;
+	margin: 0 14px;
+}
+
+
+/*输入框*/
+
+.input {
+	border: 1px solid #c2c2c2;
+	padding: 0 13px;
+	box-sizing: border-box;
+}
+
+.input.input--big {
+	width: 312px;
+	line-height: 40px;
+	height: 42px;
+}
+
+
+/*按钮*/
+
+.btn {
+	border: 1px solid #a9a9a9;
+	text-align: center;
+	cursor: pointer;
+}
+
+.btn.btn--big {
+	width: 312px;
+	line-height: 36px;
+	font-size: 14px;
+}
+
+.btn.btn--default {
+	color: #ffffff;
+	background-color: #3f3a39;
+}
+
+
+/*主要内容区域*/
+
+.main-wrap {
+	width: 1024px;
+	min-height: 906px;
+	border: 1px solid #ddd;
+	margin: 43px auto;
+}
+
+a {
+	color: #555;
+}
+
+
+/**------------------最近登录详情页begin---------------------------------**/
+
+.login-content-wrap {
+	width: 781px;
+	max-height: 658px;
+	border: 1px solid #e9e9e9;
+	margin: 0 auto;
+}
+
+.login-content-title {
+	font-size: 28px;
+	font-weight: bold;
+	width: 802px;
+	margin: 26px auto 48px auto;
+	display: flex;
+	align-items: center;
+}
+
+.login-content-title:before {
+	content: "";
+	display: inline-block;
+	width: 296px;
+	height: 5px;
+	background: url(../images/line.png);
+	vertical-align: middle;
+	transform: rotate(180deg);
+	margin-right: 19px;
+}
+
+.login-content-title:after {
+	content: "";
+	display: inline-block;
+	width: 296px;
+	height: 5px;
+	background: url(../images/line.png);
+	vertical-align: middle;
+	margin-left: 19px;
+}
+
+.login-content-table {
+	margin-bottom: 50px;
+}
+
+.login-content-table__title,
+.login-content-table__content {
+	width: 781px;
+	box-sizing: border-box;
+}
+
+.login-content-table__title {
+	margin: 0 auto 17px auto;
+	display: flex;
+}
+
+.login-content-table__title>li {
+	flex: 1;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+}
+
+.login-content-table__content {
+	margin: 0 auto;
+	border: 1px solid #e9e9e9;
+	border-left: 0px;
+	border-right: 0px;
+	font-size: 14px;
+}
+
+.login-content-table__content>li {
+	line-height: 50px;
+	border-bottom: 1px solid #e9e9e9;
+	display: flex;
+}
+
+.login-content-table__content>li:last-child {
+	border: none;
+}
+
+.login-content-table__content>li>span {
+	flex: 1;
+	text-align: center;
+}
+
+
+/**------------------最近登录详情页end---------------------------------**/
+
+
+/**------------------忘记密码页begin---------------------------------**/
+
+.forget-psd-content-wrap {
+	width: 781px;
+	margin: 51px auto 0 auto;
+}
+
+.input-group {
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+
+/**------------------忘记密码页end---------------------------------**/
+
+
+/**------------------修改手机页begin---------------------------------**/
+
+.modify-mobile-content-wrap {
+	width: 781px;
+	margin: 54px auto 0 auto;
+}
+
+
+/**------------------修改手机页end---------------------------------**/
+
+
+/**------------------重置密码页begin---------------------------------**/
+
+.reset-psd-content-wrap {
+	width: 781px;
+	margin: 50px auto 0 auto;
+}
+
+
+/**------------------重置密码页end---------------------------------**/
+
+
+/**------------------2Step begin---------------------------------**/
+
+.two-step-content-wrap {
+	width: 781px;
+	margin: 54px auto 0 auto;
+}
+
+
+/**------------------2Step end---------------------------------**/

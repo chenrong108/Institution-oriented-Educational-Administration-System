@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 开启驼峰命名规则 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- 配置别名 实体类的位置 方便引用-->
+	<typeAliases>
+		<package name="com.scnu.dao"/>
+		<package name="com.scnu.teach.mapper"/>
+		<package name="com.scnu.question.mapper"/>
+		<package name="com.scnu.course.mapper"/>
+	</typeAliases>
+	
+	<plugins>
+	    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+	    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+	        <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->        
+	    </plugin>
+	</plugins>
+
+</configuration>

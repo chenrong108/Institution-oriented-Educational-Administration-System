@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.dao.SectionMapper">
+ 
+    <resultMap id="queryForListMap" type="com.scnu.bean.Section">
+        <result column="section_Id" property="sectionId" jdbcType="INTEGER"/>
+        <result column="section_Name" property="sectionName" jdbcType="VARCHAR"/>
+        <collection property="children" javaType="java.util.List" ofType="com.scnu.bean.Subject">
+            <result column="id" property="id" jdbcType="INTEGER" />
+            <result column="subject_Id" property="subjectId" jdbcType="INTEGER" />
+            <result column="subject_Name" property="subjectName" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+   
+    <select id="queryForList" resultMap="queryForListMap" parameterType="int">
+    
+        SELECT
+          s.id,
+          u.section_Id ,
+          s.section_Name,
+          u.subject_Id,
+          s.subject_Name 
+         FROM
+         userteachinfo u
+         LEFT JOIN
+         section_subject_info s
+         ON
+         u.section_Id = s.section_Id and u.subject_Id = s.subject_Id
+         
+         WHERE user_Id = #{userId, jdbcType=INTEGER}
+          
+          
+    </select>
+    
+</mapper>

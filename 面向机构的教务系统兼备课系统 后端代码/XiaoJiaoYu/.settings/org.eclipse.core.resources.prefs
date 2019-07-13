@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/scnu/bean/JsonUtils.java=UTF-8
+encoding//src/main/java/com/scnu/service/JedisClientSingle.java=UTF-8
+encoding//src/main/java/com/scnu/util/FtpUtil.java=UTF-8
+encoding//src/main/java/com/scnu/util/IDUtils.java=UTF-8
+encoding//src/main/java/com/scnu/util/JsonUtils.java=UTF-8
+encoding//src/main/resources/resource.properties=UTF-8
+encoding//src/main/webapp/css/dmaku.main.css=UTF-8
+encoding//src/test/java/com/scnu/test/JsonUtils.java=UTF-8

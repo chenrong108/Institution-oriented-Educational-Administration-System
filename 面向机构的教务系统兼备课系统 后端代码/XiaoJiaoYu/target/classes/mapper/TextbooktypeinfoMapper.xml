@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scnu.teach.mapper.TextbooktypeinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scnu.teach.pojo.Textbooktypeinfo" >
+    <id column="text_Book_Id" property="textBookId" jdbcType="INTEGER" />
+    <result column="text_Book_Name" property="textBookName" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    text_Book_Id, text_Book_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scnu.teach.pojo.TextbooktypeinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from textbooktypeinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from textbooktypeinfo
+    where text_Book_Id = #{textBookId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from textbooktypeinfo
+    where text_Book_Id = #{textBookId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scnu.teach.pojo.TextbooktypeinfoExample" >
+    delete from textbooktypeinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scnu.teach.pojo.Textbooktypeinfo" >
+    insert into textbooktypeinfo (text_Book_Id, text_Book_Name)
+    values (#{textBookId,jdbcType=INTEGER}, #{textBookName,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scnu.teach.pojo.Textbooktypeinfo" >
+    insert into textbooktypeinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="textBookId != null" >
+        text_Book_Id,
+      </if>
+      <if test="textBookName != null" >
+        text_Book_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="textBookId != null" >
+        #{textBookId,jdbcType=INTEGER},
+      </if>
+      <if test="textBookName != null" >
+        #{textBookName,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scnu.teach.pojo.TextbooktypeinfoExample" resultType="java.lang.Integer" >
+    select count(*) from textbooktypeinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update textbooktypeinfo
+    <set >
+      <if test="record.textBookId != null" >
+        text_Book_Id = #{record.textBookId,jdbcType=INTEGER},
+      </if>
+      <if test="record.textBookName != null" >
+        text_Book_Name = #{record.textBookName,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update textbooktypeinfo
+    set text_Book_Id = #{record.textBookId,jdbcType=INTEGER},
+      text_Book_Name = #{record.textBookName,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scnu.teach.pojo.Textbooktypeinfo" >
+    update textbooktypeinfo
+    <set >
+      <if test="textBookName != null" >
+        text_Book_Name = #{textBookName,jdbcType=CHAR},
+      </if>
+    </set>
+    where text_Book_Id = #{textBookId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scnu.teach.pojo.Textbooktypeinfo" >
+    update textbooktypeinfo
+    set text_Book_Name = #{textBookName,jdbcType=CHAR}
+    where text_Book_Id = #{textBookId,jdbcType=INTEGER}
+  </update>
+</mapper>
