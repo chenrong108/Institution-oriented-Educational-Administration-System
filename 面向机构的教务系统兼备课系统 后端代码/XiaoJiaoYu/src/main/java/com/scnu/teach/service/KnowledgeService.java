@@ -116,6 +116,21 @@ public class KnowledgeService {
 		}	
 	}
 	
+	// solr搜索
+	public List<List<Integer>> getSolrListId(List<Integer> knowledgeIds){
+		// 存储所有的知识点id列表
+		List<List<Integer>> questionIdLists = new ArrayList<List<Integer>>();
+		for(Integer knowledgeId : knowledgeIds) {
+			System.out.println("getFinalQuestionId knowledgeId = " + knowledgeId);
+			Highmathrja1info highmathrja1info = getLevel(knowledgeId);
+			if(highmathrja1info != null){
+			List<Integer> level4List = getLevel4List(highmathrja1info);
+			questionIdLists.add(level4List);
+			}
+		}
+		return questionIdLists;
+	}
+	
 	// 查询问题的
 	public List<String> getQuestionsDetail(List<Integer> FinalQuestionIdList){
 		
@@ -129,6 +144,13 @@ public class KnowledgeService {
 		
 		List<String> questionsDetailList = questionAssembleMapper.getAllQuestionDetailList(difficultyInfo, questionTypeId);
 		return questionsDetailList;
+	}
+	
+	// 返回所有的问题的Id
+	public List<Integer> getAllQuestionDetailId(Integer difficultyInfo, Integer questionTypeId){
+			
+			List<Integer> questionsDetailListId = questionAssembleMapper.getAllQuestionDetailListId(difficultyInfo, questionTypeId);
+			return questionsDetailListId;
 	}
 	
 	// 根据知识点Ids查询问题  并且进行分页

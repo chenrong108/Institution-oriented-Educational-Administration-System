@@ -40,4 +40,6 @@ public interface QuestionAssembleMapper {
     List<String>  getQuestionDetailList(List<Integer> FinalQuestionIdList);
     
     List<String>  getAllQuestionDetailList(@Param("difficultyInfo") Integer difficultyInfo, @Param("questionTypeId") Integer questionTypeId);
+    
+    List<Integer>  getAllQuestionDetailListId(@Param("difficultyInfo") Integer difficultyInfo, @Param("questionTypeId") Integer questionTypeId);
 }

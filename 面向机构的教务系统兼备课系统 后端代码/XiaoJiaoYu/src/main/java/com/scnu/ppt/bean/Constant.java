@@ -22,6 +22,9 @@ public class Constant {
     //public static final String IP = "localhost";
     
     public static final String PROTOCOL = "http://";
+    
+    // solr路径
+    public static final String SOLR_URL = PROTOCOL + "localhost" + ":8983/solr/chenrong";
      
     // 上传的路径
     public static final String BASE_URL = PROTOCOL + IP + "/" + UPLOAD_ROOT_PATH;

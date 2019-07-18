@@ -285,4 +285,15 @@
      </if>
   
   </select>
+  <select id="getAllQuestionDetailListId" resultType="int" parameterType="int" >
+     
+     select question_Id from question_assemble where 1 = 1
+     <if test="difficultyInfo != null">
+       and question_difficult = #{difficultyInfo, jdbcType=INTEGER}
+     </if>
+     <if test="questionTypeId != null">
+       and question_Type_Id = #{questionTypeId, jdbcType=INTEGER}
+     </if>
+  
+  </select>
 </mapper>
